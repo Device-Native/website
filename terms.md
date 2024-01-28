@@ -1,6 +1,6 @@
 layout: page
 title: "Device Native Terms of Use"
-permalink: /
+permalink: /terms
 
 **Website Terms of Use**
 
