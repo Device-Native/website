@@ -1,3 +1,7 @@
+layout: page
+title: "Device Native Terms of Use"
+permalink: /
+
 **Website Terms of Use**
 
 **Version 1.0**
