@@ -118,15 +118,43 @@ public void onNotificationPosted(StatusBarNotification sbn) {
 }
 ```
 
-### 9. Retrieve an Advertisement for Display
+### 9. Retrieve an Advertisement for Recommendations (not Search)
 
-To retrieve an advertisement for immediate display, use the following code.
+To retrieve an advertisement for immediate display, use the following code. Note that you can adjust the number of ads to be returned by passing a number to the getAdsForDisplay method.
 
-Note that this will automatically fire an impression immediately if the impressionUrl is populated for the ad. This method return an ad in milliseconds, so it's safe to run on the main thread.
+Note that this will automatically fire an impression immediately if the impressionUrl is populated for each ad. This method return an ad in milliseconds, so it's safe to run on the main thread.
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-DNAdUnit adUnit = dna.getAdForDisplay();
+List<DNAdUnit> adUnits = dna.getAdsForDisplay(1);
+```
+
+### 10. Retrieve an Advertisement for Search
+
+To retrieve an advertisement for search, use the following code. There is no need to debounce this call, and it's safe to call from the main thread since it will return in milliseconds.
+
+Note that this will automatically fire an impression immediately if the impressionUrl is populated for each ad.
+
+```java
+DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
+List<DNAdUnit> adUnits = dna.getAdsForSearch(query);
+```
+
+#### Dealing with AdUnits in Search
+
+We recommend that you place the ad units for apps that are currently installed in the first position of the search result list. You may even decide to remove your organic results for the same package names from your list, so there are no duplicate results.
+
+For the ad units for apps that are not installed, we recommend that you place the ad units for apps that are not installed in the last position of your search result list.
+
+```java
+for (DNAdUnit adUnit : adUnits) {
+    if (adUnit.isAppInstalled) {
+        // place the ad unit in the first position of the search result list
+        // maybe remove the organic results for the same package names (adUnit.packageName)
+    } else {
+        // place the ad unit in the last position of the search result list
+    }
+}
 ```
 
 #### Key Fields of DNAdUnit Class
@@ -182,7 +210,7 @@ if (!adUnit.isAppInstalled) {
 }
 ```
 
-### 10. Handle User Click Interaction
+### 11. Handle User Click Interaction
 
 When a user clicks on the ad, use the following code to handle the routing and receive notifications of status.
 
