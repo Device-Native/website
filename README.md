@@ -96,29 +96,7 @@ public void onTerminate() {
 }
 ```
 
-### 9. Retrieve an Advertisement
-
-To retrieve an advertisement for immediate display, use the following code.
-
-Note that this will automatically fire an impression immediately if the impressionUrl is populated for the ad. This method return an ad in milliseconds, so it's safe to run on the main thread.
-
-```java
-DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-DNAdUnit adUnit = dna.getAdForDisplay();
-```
-
-#### Key Fields of DNAdUnit Class
-
-- `adId`: Unique identifier for the ad. Just a UUID for reference if you need
-- `packageName`: The package name of the advertiser's app
-- `appName`: The name of the advertiser's app
-- `title`: The ad creative title to be shown to the user
-- `description`: The ad creative description to be shown to the user. Can be null!
-- `icon`: The ad creative icon URL to be shown to the user. Can be null!
-- `clickUrl`: The click URL of the ad unit. This will automatically be fired by the SDK when using the click and route method.
-- `impressionUrl`: The impression URL of the ad unit. This will automatically be fired by the SDK when requesting an ad for display.
-
-### 9. Process Notifications (Optional but Recommended) 
+### 8. Process Notifications (Optional but Recommended) 
 
 Device Native can use the recent notification for an app as its creative, creating perosnalized experiences that drive high conversions. It's strongly recommended that you add the notification listener.
 
@@ -137,6 +115,70 @@ public void onNotificationPosted(StatusBarNotification sbn) {
     dna.onNotificationPosted(sbn);
 
     // your other handling code
+}
+```
+
+### 9. Retrieve an Advertisement for Display
+
+To retrieve an advertisement for immediate display, use the following code.
+
+Note that this will automatically fire an impression immediately if the impressionUrl is populated for the ad. This method return an ad in milliseconds, so it's safe to run on the main thread.
+
+```java
+DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
+DNAdUnit adUnit = dna.getAdForDisplay();
+```
+
+#### Key Fields of DNAdUnit Class
+
+- `adId`: Unique identifier for the ad. Just a UUID for reference if you need
+- `packageName`: The package name of the advertiser's app
+- `isAppInstalled`: A convenient boolean indicating whether the advertiser's app is installed, derived from package manager
+- `appName`: The name of the advertiser's app
+- `title`: The ad creative title to be shown to the user
+- `description`: The ad creative description to be shown to the user. Can be null!
+- `iconUrl`: The ad creative icon URL to be shown to the user. Can be null!
+- `clickUrl`: The click URL of the ad unit. This will automatically be fired by the SDK when using the click and route method.
+- `impressionUrl`: The impression URL of the ad unit. This will automatically be fired by the SDK when requesting an ad for display.
+
+#### Loading the advertiser's icon
+
+##### Case when isAppInstalled is true
+
+When the app is installed, we recommend just retrieving the icon from the package manager for speed and simplicity.
+
+```java
+if (adUnit.isAppInstalled) {
+    // load the icon from the package manager
+    Drawable icon = getPackageManager().getApplicationIcon(adUnit.packageName);
+}
+```
+
+##### Case when isAppInstalled is false - load the icon from the iconUrl
+
+When the app is not installed, we have provided a convenient method to load the icon from the iconUrl. You can also retrieve the iconUrl from the ad unit object and handle this yourself if you prefer.
+
+```java
+if (!adUnit.isAppInstalled) {
+    // load the icon from the iconUrl
+    adUnit.loadCreativeDrawable(new ImageCallback() {
+    @Override
+    public void onImageLoaded(Drawable icon) {
+        // Run on UI thread if updating UI components
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // set the image on your UI
+                imageView.setImageDrawable(image);
+            }
+        });
+    }
+
+    @Override
+    public void onError(String error) {
+        // Log the error, show a default icon, etc
+    }
+});
 }
 ```
 
