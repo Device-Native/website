@@ -118,27 +118,34 @@ public void onNotificationPosted(StatusBarNotification sbn) {
 }
 ```
 
-### 9. Retrieve an Advertisement for Recommendations (not Search)
+### 9. Retrieve Advertisements for Recommendations (not Search)
 
-To retrieve an advertisement for immediate display, use the following code. Note that you can adjust the number of ads to be returned by passing a number to the getAdsForDisplay method.
-
-Note that this will automatically fire an impression immediately if the impressionUrl is populated for each ad. This method return an ad in milliseconds, so it's safe to run on the main thread.
+To retrieve an advertisement for immediate display, use the following code. 
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
 List<DNAdUnit> adUnits = dna.getAdsForDisplay(1);
 ```
 
-### 10. Retrieve an Advertisement for Search
+*Note*:
+- That you can adjust the number of ads to be returned by passing a number to the getAdsForDisplay method.
+- This method return an ad in milliseconds, so it's safe to run on the main thread. 
+- This will automatically fire an impression immediately if the impressionUrl is populated for each ad. You MUST therefore show all of the ads to the user.
+- These are ordered by relevance, so the first ad will be the most relevant.
 
-To retrieve an advertisement for search, use the following code. There is no need to debounce this call, and it's safe to call from the main thread since it will return in milliseconds.
+### 10. Retrieve Advertisements for Search
 
-Note that this will automatically fire an impression immediately if the impressionUrl is populated for each ad.
+To retrieve an advertisement for search, use the following code.
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
 List<DNAdUnit> adUnits = dna.getAdsForSearch(query);
 ```
+
+*Note*:
+- There is no need to debounce this call, as we have some simple logic to handle that.
+- This method return an ad in milliseconds, so it's safe to run on the main thread. 
+- This will automatically fire an impression immediately if the impressionUrl is populated for each ad. You MUST therefore show all of the ads to the user.
 
 #### Dealing with AdUnits in Search
 
