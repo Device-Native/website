@@ -218,10 +218,27 @@ if (adUnit.isAppInstalled) {
 
 When the app is not installed, we have provided a convenient method to load the icon from the iconUrl. You can also retrieve the iconUrl from the ad unit object and handle this yourself if you prefer.
 
+###### Synchronously
+
+To be called on a background thread.
+
 ```java
 if (!adUnit.isAppInstalled) {
     // load the icon from the iconUrl
-    adUnit.loadCreativeDrawable(new ImageCallback() {
+    Drawable icon = adUnit.loadCreativeDrawable();
+    // set the image on your UI
+    imageView.setImageDrawable(icon);
+}
+```
+
+###### Asynchrously
+
+Can be called on the main thread.
+
+```java
+if (!adUnit.isAppInstalled) {
+    // load the icon from the iconUrl
+    adUnit.loadCreativeDrawableAsync(new ImageCallback() {
     @Override
     public void onImageLoaded(Drawable icon) {
         // Run on UI thread if updating UI components
