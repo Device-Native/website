@@ -9,7 +9,7 @@ This guide provides detailed instructions for integrating the DeviceNativeAds SD
 - Android Studio and an Android project.
 - Basic knowledge of Android app development and Java.
 
-## Integration Steps
+## Basic SDK Integration Steps
 
 ### 1. Create an Account and Get a Device Key
 
@@ -29,7 +29,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-v####.aar
+project-folder/libs/com.devicenative.dna-v`latest-version`.aar
 ```
 
 #### 2.3 Add the AAR Dependency
@@ -38,7 +38,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-v1.0.0.aar')
+    implementation files('libs/com.devicenative.dna-v`latest-version`.aar')
 }
 ```
 
@@ -46,7 +46,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-v1.0.0.aar'))
+    implementation(files('libs/com.devicenative.dna-v`latest-version`.aar'))
 }
 ```
 
@@ -123,7 +123,7 @@ public void onTerminate() {
 
 ### 8. Process Notifications (Optional but Recommended) 
 
-Device Native can use the recent notification for an app as its creative, creating perosnalized experiences that drive high conversions. It's strongly recommended that you add the notification listener.
+Device Native can use the recent notification for an app as its creative, creating personalized experiences that drive high conversions. It's strongly recommended that you add the notification listener.
 
 Open your notficiation listener class that you noticed in Step 5:
 ```java
@@ -143,13 +143,17 @@ public void onNotificationPosted(StatusBarNotification sbn) {
 }
 ```
 
+## Search And Recommendation Integration Steps - Ads Only
+
+The instructions below will guide you on how to integrate the DNA SDK to power ads-only experiences in your launcher app.
+
 ### 9. Retrieve Advertisements for Recommendations (not Search)
 
 To retrieve an advertisement for immediate display, use the following code. 
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-List<DNAdUnit> adUnits = dna.getAdsForDisplay(1);
+List<DNAResultItem> adUnits = dna.getAdsForDisplay(1);
 ```
 
 *Note*:
@@ -164,7 +168,7 @@ To retrieve an advertisement for search, use the following code.
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-List<DNAdUnit> adUnits = dna.getAdsForSearch(query);
+List<DNAResultItem> adUnits = dna.getAdsForSearch(query);
 ```
 
 *Note*:
@@ -172,15 +176,15 @@ List<DNAdUnit> adUnits = dna.getAdsForSearch(query);
 - This method return an ad in milliseconds, so it's safe to run on the main thread. 
 - This will automatically fire an impression immediately if the impressionUrl is populated for each ad. You MUST therefore show all of the ads to the user.
 
-#### Dealing with AdUnits in Search
+#### Dealing with Result Items in Search
 
 We recommend that you place the ad units for apps that are currently installed in the first position of the search result list. You may even decide to remove your organic results for the same package names from your list, so there are no duplicate results.
 
 For the ad units for apps that are not installed, we recommend that you place the ad units for apps that are not installed in the last position of your search result list.
 
 ```java
-for (DNAdUnit adUnit : adUnits) {
-    if (adUnit.isAppInstalled) {
+for (DNAResultItem adUnit : adUnits) {
+    if (adUnit.isInstalled) {
         // place the ad unit in the first position of the search result list
         // maybe remove the organic results for the same package names (adUnit.packageName)
     } else {
@@ -189,11 +193,11 @@ for (DNAdUnit adUnit : adUnits) {
 }
 ```
 
-#### Key Fields of DNAdUnit Class
+#### Key Fields of DNAResultItem Class
 
-- `adId`: Unique identifier for the ad. Just a UUID for reference if you need
+- `id`: Unique identifier for the ad. Just a UUID for reference if you need
 - `packageName`: The package name of the advertiser's app
-- `isAppInstalled`: A convenient boolean indicating whether the advertiser's app is installed, derived from package manager
+- `isInstalled`: A convenient boolean indicating whether the advertiser's app is installed, derived from package manager
 - `appName`: The name of the advertiser's app
 - `title`: The ad creative title to be shown to the user
 - `description`: The ad creative description to be shown to the user. Can be null!
@@ -203,18 +207,18 @@ for (DNAdUnit adUnit : adUnits) {
 
 #### Loading the advertiser's icon
 
-##### Case when isAppInstalled is true
+##### Case when isInstalled is true
 
 When the app is installed, we recommend just retrieving the icon from the package manager for speed and simplicity.
 
 ```java
-if (adUnit.isAppInstalled) {
+if (adUnit.isInstalled) {
     // load the icon from the package manager
     Drawable icon = getPackageManager().getApplicationIcon(adUnit.packageName);
 }
 ```
 
-##### Case when isAppInstalled is false - load the icon from the iconUrl
+##### Case when isInstalled is false - load the icon from the iconUrl
 
 When the app is not installed, we have provided a convenient method to load the icon from the iconUrl. You can also retrieve the iconUrl from the ad unit object and handle this yourself if you prefer.
 
@@ -223,7 +227,7 @@ When the app is not installed, we have provided a convenient method to load the 
 To be called on a background thread.
 
 ```java
-if (!adUnit.isAppInstalled) {
+if (!adUnit.isInstalled) {
     // load the icon from the iconUrl
     Drawable icon = adUnit.loadCreativeDrawable();
     // set the image on your UI
@@ -236,7 +240,7 @@ if (!adUnit.isAppInstalled) {
 Can be called on the main thread.
 
 ```java
-if (!adUnit.isAppInstalled) {
+if (!adUnit.isInstalled) {
     // load the icon from the iconUrl
     adUnit.loadCreativeDrawableAsync(new ImageCallback() {
     @Override
@@ -267,7 +271,7 @@ It executes on a separate thread to ensure the click handling URL properly track
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-dna.fireClickAndRoute(adUnit, new DeviceNativeAdClickHandler() {
+dna.fireClickAndRoute(adUnit, new DeviceNativeClickHandler() {
     /**
      * This method is called when the ad click routing process is completed, which means the user was
      * sent to their destination, or it failed to route for soem reason.
@@ -288,6 +292,16 @@ dna.fireClickAndRoute(adUnit, new DeviceNativeAdClickHandler() {
     }
 });
 ```
+
+## Search And Recommendation Integration Steps - Organic + Ads
+
+### Integrating Recommendations with Suggested Apps
+
+
+
+### Integrating Recommendations with Suggested Deep Links
+
+### Integrating App Drawer Search
 
 ## Need Help?
 

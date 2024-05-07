@@ -1,0 +1,34 @@
+site_name: Device Native Integration Documentation
+nav:
+  - Overview: index.md
+  - Integrate Android SDK: integrate-sdk.md
+  - Organic/Ads - Recommendations: rec-organic.md
+  - Organic/Ads - Search: search-organic.md
+  - Ads Only - Recommendations: rec-ads.md
+  - Ads Only - Search: search-ads.md
+site_url: https://device-native.github.io/
+site_description: The integration guide for Device Native's SDK
+site_author: Device Native, Inc
+theme:
+  name: material
+  logo: images/logo-light.png
+  favicon: images/favicon.ico
+  palette:
+    primary: blue grey
+  features:
+    - search.suggest
+    - search.highlight
+    - navigation.footer
+plugins:
+  - search
+extra:
+  generator: false
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
