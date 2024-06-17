@@ -5,6 +5,7 @@ nav:
   - Organic/Ads - Recommendations: rec-organic.md
   - Organic/Ads - Search: search-organic.md
   - Ads Only - Recommendations: rec-ads.md
+  - Ads Only - Hot Apps: hot-app-suggestions.md
   - Ads Only - Search: search-ads.md
 site_url: https://device-native.github.io/
 site_description: The integration guide for Device Native's SDK

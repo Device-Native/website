@@ -25,6 +25,7 @@ These documents are for developers who only intend to use the advertisements fro
 
 - [Ad Recommendations](rec-ads.md) - shows how to integrate ads into recommendation sections of your launcher, such as suggested or recently-used apps.
 - [Search Ads](search-ads.md) - shows how to integrate ads into search results of your launcher.
+- [Hot App Suggestions](hot-app-suggestions.md) - shows how to integrate hot app suggestions into your launcher.
 
 ## Need Help?
 
