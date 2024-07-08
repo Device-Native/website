@@ -16,7 +16,7 @@ The DeviceNativeAds SDK is distributed as an AAR file. Follow the instructions b
 
 ### 2.1. Download the AAR File
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.0.1.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.0.1.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.0.2.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.0.2.aar)
 
 ### 2.2 Place the AAR File in your Project
 
@@ -24,7 +24,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-v1.0.1.aar
+project-folder/libs/com.devicenative.dna-v1.0.2.aar
 ```
 
 ### 2.3 Add the AAR Dependency
@@ -33,7 +33,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-v1.0.1.aar')
+    implementation files('libs/com.devicenative.dna-v1.0.2.aar')
 }
 ```
 
@@ -41,7 +41,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-v1.0.1.aar'))
+    implementation(files('libs/com.devicenative.dna-v1.0.2.aar'))
 }
 ```
 
