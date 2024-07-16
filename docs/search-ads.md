@@ -49,6 +49,8 @@ for (DNAResultItem adUnit : adUnits) {
 - `iconUrl`: The ad creative icon URL to be shown to the user. Can be null!
 - `clickUrl`: The click URL of the ad unit. This will automatically be fired by the SDK when using the click and route method.
 - `impressionUrl`: The impression URL of the ad unit. This will automatically be fired by the SDK when requesting an ad for display.
+- `eCPM`: The expected revenue per thousand impressions for the ad unit. Note that this is not real when the `learningMode` is true
+- `learningMode`: A boolean indicating whether the ad unit is in eCPM learning mode, and whether the eCPM number can be used.
 
 ## 3. Loading The Advertiser's Icon
 
