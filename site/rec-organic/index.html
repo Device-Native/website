@@ -720,6 +720,8 @@
 <li><code>iconUrl</code>: The ad creative icon URL to be shown to the user. Can be null!</li>
 <li><code>clickUrl</code>: The click URL of the ad unit. This will automatically be fired by the SDK when using the click and route method.</li>
 <li><code>impressionUrl</code>: The impression URL of the ad unit. This will automatically be fired by the SDK when requesting an ad for display.</li>
+<li><code>eCPM</code>: The expected revenue per thousand impressions for the ad unit. Note that this is not real when the <code>learningMode</code> is true</li>
+<li><code>learningMode</code>: A boolean indicating whether the ad unit is in eCPM learning mode, and whether the eCPM number can be used.</li>
 </ul>
 <h3 id="example-implementation">Example Implementation</h3>
 <p>Here's an example iteration through the app results to show an example implementation:</p>
