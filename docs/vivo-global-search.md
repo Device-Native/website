@@ -370,7 +370,7 @@ dna.fireImpressions(scenario2Ads, "gs, scenario 2, slot 4 and 9, CPC+CPA");
 dna.fireImpressions(scenario3Ads, "gs, scenario 3, slot 5 and 10, CPA");
 ```
 
-### 7. Sends user click to DNA for routing
+### 7. Send user click to DNA for routing
 7 将用户点击发送给DNA进行路由
 
 After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters.
