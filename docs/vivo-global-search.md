@@ -18,9 +18,11 @@ Below are the proposed integration steps to accommodate vivo's Global Search int
     2. [Call the DNA SDK to get ALL search results](#2-call-the-dna-sdk-to-get-all-search-results)
     3. [Split out the DNA results for the 2 scenarios](#3-split-out-the-dna-results-for-the-2-scenarios)
     4. [Show all scenario 5 results from DNA](#4-show-all-scenario-5-results-from-dna)
-    5. [Mix scenario 6 results with vivo organic results](#5-mix-scenario-6-results-with-vivo-organic-results)
-    6. [Load ad creative in the UI for either scenario](#6-load-ad-creative-in-the-ui-for-either-scenario)
-    7. [Send user click to DNA for routing for either scenario](#7-send-user-click-to-dna-for-routing-for-either-scenario)
+    5. [Register impressions for all visible Scenario 5 results](#5-register-impressions-for-all-visible-scenario-5-results)
+    6. [Mix scenario 6 results with vivo organic results](#6-mix-scenario-6-results-with-vivo-organic-results)
+    7. [Fire impressions for all visible Scenario 6 results](#7-fire-impressions-for-all-visible-scenario-6-results)
+    8. [Load ad creative in the UI for either scenario](#8-load-ad-creative-in-the-ui-for-either-scenario)
+    9. [Send user click to DNA for routing for either scenario](#9-send-user-click-to-dna-for-routing-for-either-scenario)
 
 以下是适应vivo全局搜索集成产品规格的建议集成步骤。
 
@@ -38,9 +40,11 @@ Below are the proposed integration steps to accommodate vivo's Global Search int
     2. [调用DNA SDK获取所有搜索结果](#2-call-the-dna-sdk-to-get-all-search-results)
     3. [为2种场景拆分DNA结果](#3-split-out-the-dna-results-for-the-2-scenarios)
     4. [显示DNA的所有场景5结果](#4-show-all-scenario-5-results-from-dna)
-    5. [将场景6结果与vivo有机结果混合](#5-mix-scenario-6-results-with-vivo-organic-results)
-    6. [为任一场景在UI中加载广告创意](#6-load-ad-creative-in-the-ui-for-either-scenario)
-    7. [为任一场景将用户点击发送给DNA进行路由](#7-send-user-click-to-dna-for-routing-for-either-scenario)
+    5. [为所有可见的场景5结果注册展示](#5-register-impressions-for-all-visible-scenario-5-results)
+    6. [将场景6结果与vivo有机结果混合](#6-mix-scenario-6-results-with-vivo-organic-results)
+    7. [为所有可见的场景6结果注册展示](#7-fire-impressions-for-all-visible-scenario-6-results)
+    8. [在UI中加载广告创意](#8-load-ad-creative-in-the-ui-for-either-scenario)
+    9. [为任一场景将用户点击发送给DNA进行路由](#9-send-user-click-to-dna-for-routing-for-either-scenario)
 
 # DNA SDK Integration
 DNA SDK 集成
@@ -54,7 +58,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.0.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.0.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.1.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.1.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -65,7 +69,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.1.0.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.1.1.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -77,7 +81,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.1.0.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.1.1.aar')
 }
 ```
 
@@ -87,7 +91,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.1.0.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.1.1.aar'))
 }
 ```
 
@@ -442,7 +446,7 @@ Adding this step to indicate that the user has entered a character in the search
 
 添加此步骤以表明用户已在搜索栏中输入字符，这是以下逻辑的触发器。
 
-### 2. Calls the DNA SDK to get ALL search results
+### 2. Call the DNA SDK to get ALL search results
 2 调用DNA SDK获取所有搜索结果
 
 This method call will return a list of DNAResultItem objects which will be used for Scenario 5 and 6.
@@ -451,7 +455,7 @@ This method call will return a list of DNAResultItem objects which will be used 
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-List<DNAResultItem> adUnits = dna.getOrganicResultsForSearch(query, "gs, search ads");
+List<DNAResultItem> adUnits = dna.getOrganicResultsForSearchForCache(query, "gs, search ads");
 ```
 
 ### 3. Split out the DNA results for the 2 scenarios
@@ -485,8 +489,26 @@ The local app results from DNA are both Organic and Ads, ranked by relevance and
 
 DNA 的本地应用结果既是有机的，也是广告的，按相关性和货币化潜力排序。您将使用场景5的DNA结果替换所有原始的 vivo 本地应用结果。默认情况下只显示 3 个是可以的，当用户展开搜索结果时显示其余结果。
 
-### 5. Mix scenario 6 results with vivo organic results
-5 将场景6的结果与 vivo 有机结果混合
+### 5. Register impressions for all visible Scenario 5 results
+5 为所有可见的场景5结果注册展示
+
+
+It is important that you fire impressions for the ads when they are shown to the user. This is how DNA tracks the performance of the ads, but also manages frequency caps, targeting and many other functions. The example below shows how to fire impressions for the first 3 results in scenario5Results.
+
+当向用户显示广告时，重要的是触发展示。这是 DNA 跟踪广告性能的方式，但也管理频率上限、定位和许多其他功能。下面的示例显示了如何为 scenario5Results 中的前 3 个结果触发展示。
+
+```java
+DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
+// Filter the first 3 results in scenario5Results and fire impressions
+// 过滤 scenario5Results 中的前 3 个结果并触发展示
+List<DNAResultItem> visibleScenario5Results = scenario5Results.stream()
+    .limit(3)
+    .collect(Collectors.toList());
+dna.fireImpressions(visibleScenario5Results, "gs, scenario 5, local apps");
+```
+
+### 6. Mix scenario 6 results with vivo organic results
+6 将场景6的结果与 vivo 有机结果混合
 
 DNA install ads for search are **NOT** a full replacement for vivo VStore search results. They are only a limited set of available ads. If you want to provide a high quality product, we recommend that you mix the DNA results with the vivo organic results for Scenario 6.
 
@@ -544,8 +566,25 @@ private String getPackageName(Object result) {
 }
 ```
 
-### 6. Load ad creative in the UI for either scenario
-6 在UI中加载广告创意
+### 7. Fire impressions for all visible Scenario 6 results
+7 为所有可见的场景6结果注册展示
+
+It is important that you fire impressions for the ads when they are shown to the user. This is how DNA tracks the performance of the ads, but also manages frequency caps, targeting and many other functions. The example below shows how to fire impressions for the first 4 results in scenario6Ads.
+
+当向用户显示广告时，重要的是触发展示。这是 DNA 跟踪广告性能的方式，但也管理频率上限、定位和许多其他功能。下面的示例显示了如何为 scenario6Ads 中的前 4 个结果触发展示。
+
+```java
+DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
+// Filter the first 4 results in scenario6Ads and fire impressions
+// 过滤 scenario6Ads 中的前 4 个结果并触发展示
+List<DNAResultItem> visibleScenario6Results = scenario6Ads.stream()
+    .limit(4)
+    .collect(Collectors.toList());
+dna.fireImpressions(visibleScenario6Results, "gs, scenario 6, app store");
+```
+
+### 8. Load ad creative in the UI for either scenario
+8 在UI中加载广告创意
 
 Below shows an example implementation of loading the ad creative in the UI, with DNA method calls. (This is the same as the Recommended Apps section in the Global Search app.)
 
@@ -609,8 +648,8 @@ if (resultItem.description == null || resultItem.description.isEmpty()) {
 }
 ```
 
-### 7. Send user click to DNA for routing for either scenario
-7 将用户点击发送给DNA进行路由
+### 9. Send user click to DNA for routing for either scenario
+9 将用户点击发送给DNA进行路由
 
 After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters. (This is the same as the Recommended Apps section in the Global Search app.)
 
