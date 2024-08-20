@@ -451,7 +451,7 @@ This method call will return a list of DNAResultItem objects which will be used 
 
 ```java
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-List<DNAResultItem> adUnits = dna.getAdsFogetOrganicResultsForSearchrSearch(query, "gs, search ads");
+List<DNAResultItem> adUnits = dna.getOrganicResultsForSearch(query, "gs, search ads");
 ```
 
 ### 3. Split out the DNA results for the 2 scenarios
