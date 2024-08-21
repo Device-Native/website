@@ -1,6 +1,12 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # DNA - vivo Integration Proposals
 
-**Date:** 2024-08-19
+**Date:** 2024-08-21
 
 Below are the proposed integration steps to accommodate vivo's Global Search integration product spec.
 
@@ -49,6 +55,8 @@ Below are the proposed integration steps to accommodate vivo's Global Search int
 # DNA SDK Integration
 DNA SDK 集成
 
+See [vivo-sdk-changelog](vivo-sdk-changelog.md) for release details.
+
 ### 1. Add AAR Dependency
 1 添加 AAR 依赖
 
@@ -58,7 +66,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.1.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.1.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.2.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.2.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -69,7 +77,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.1.1.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.1.2.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -81,7 +89,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.1.1.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.1.2.aar')
 }
 ```
 
@@ -91,7 +99,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.1.1.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.1.2.aar'))
 }
 ```
 
@@ -225,6 +233,9 @@ List<DNAResultItem> adUnits = dna.getAdsForCache(6, "gs, recommended apps");
 | `title` | The ad creative title to be shown to the user | 要向用户显示的广告创意标题 |
 | `description` | The ad creative description to be shown to the user. Can be null! | 要向用户显示的广告创意描述。可以为空！ |
 | `iconUrl` | The ad creative icon URL to be shown to the user. Can be null! | 要向用户显示的广告创意图标URL。可以为空！ |
+| `ratings` | The number of ratings of the advertiser's app from Google Play | 广告主应用从Google Play的评分次数 |
+| `downloads` | The number of downloads of the advertiser's app from Google Play | 广告主应用从Google Play的下载次数 |
+| `rating` | The average rating of the advertiser's app from Google Play | 广告主应用从Google Play的平均评分 |
 | `eCPM` | The expected revenue per thousand impressions for the ad unit. Note that this is not real when the `learningMode` is true | 广告单元的预期每千次展示收入。注意，当 `learningMode` 为 true 时，这不是真实的 |
 | `learningMode` | A boolean indicating whether the ad unit is in eCPM learning mode, and whether the eCPM number can be used. | 一个布尔值，表示广告单元是否处于 eCPM 学习模式，以及是否可以使用 eCPM 数字。 |
 
@@ -647,6 +658,13 @@ if (resultItem.description == null || resultItem.description.isEmpty()) {
   itemDescription.setText(resultItem.description);
 }
 ```
+
+#### 8.1 Access app ratings, downloads, and reviews
+8.1 访问应用评分、下载次数和评论
+
+You can access the ratings, downloads, and reviews of the advertiser's app from Google Play by using the `ratings`, `downloads`, and `reviews` fields in the `DNAResultItem` object.
+
+您可以通过使用 `DNAResultItem` 对象中的 `ratings`、`downloads` 和 `reviews` 字段来访问广告主应用在 Google Play 上的评分、下载次数和评论。
 
 ### 9. Send user click to DNA for routing for either scenario
 9 将用户点击发送给DNA进行路由
