@@ -27,3 +27,8 @@ hide:
 - Cache and reused redirect outcomes for improved performance on repeat clicks
 - Improved thread performance for click speedup
 - Implemented deep linking for install ads that are already installed
+
+## **vivo-1.1.4** released 8/26/2024
+
+- Parallel process tracking link and Play Store redirect when possible
+- Improved performance of Google Play to Custom Store remapping
