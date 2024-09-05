@@ -6,7 +6,7 @@ hide:
 
 # DNA - vivo Integration Proposals
 
-**Date:** 2024-08-23
+**Date:** 2024-09-05
 
 Below are the proposed integration steps to accommodate vivo's Global Search integration product spec.
 
