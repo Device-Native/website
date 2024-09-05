@@ -66,7 +66,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.4.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.4.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.5.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.5.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -77,7 +77,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.1.4.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.1.5.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -89,7 +89,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.1.4.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.1.5.aar')
 }
 ```
 
@@ -99,7 +99,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.1.4.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.1.5.aar'))
 }
 ```
 
@@ -107,13 +107,17 @@ dependencies {
 2 注册数据编排服务
 
 
-In your AndroidManifest.xml, register the DNADataOrchestrator service:
+In your AndroidManifest.xml, register the DNADataOrchestrator service and the DNAConfigBuilder service. The DNADataOrchestrator is the main service which coordinates data fetching and processing to deliver fresh advertising results. It will run in your application's process and persist. The DNAConfigBuilder is a one-time use service which runs in a separate process to retrieve the user agent for the device. It will run for approximately 1 second at startup, and not again.
 
-在您的 AndroidManifest.xml 中，注册 DNADataOrchestrator 服务：
+在您的 AndroidManifest.xml 中，注册 DNADataOrchestrator 服务和 DNAConfigBuilder 服务。DNADataOrchestrator 是主要服务，协调数据获取和处理以交付新鲜广告结果。它将在您的应用程序进程中运行并持续存在。DNAConfigBuilder 是一次性服务，在单独的进程中运行以检索设备的 user agent。它将在启动时运行约 1 秒钟，不再运行。
 
 
 ```xml
 <service android:name="com.devicenative.dna.DNADataOrchestrator" />
+<service
+    android:name="com.devicenative.dna.utils.DNAConfigBuilder"
+    android:process=":dna_config_builder"
+    android:exported="false"/>
 ```
 
 ### 3. Verify Required Permissions

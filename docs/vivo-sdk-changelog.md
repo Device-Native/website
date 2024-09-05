@@ -30,5 +30,11 @@ hide:
 
 ## **vivo-1.1.4** released 8/26/2024
 
+- Most app-install clicks will now be instantaneous
 - Parallel process tracking link and Play Store redirect when possible
 - Improved performance of Google Play to Custom Store remapping
+
+## **vivo-1.1.5** released 9/5/2024
+
+- Initialization ongoing memory reduction of ~ 20MB
+- Isolated Chrome User Agent fetch to process in order to constrain memory consumption
