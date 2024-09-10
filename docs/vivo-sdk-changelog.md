@@ -38,3 +38,7 @@ hide:
 
 - Initialization ongoing memory reduction of ~ 20MB
 - Isolated Chrome User Agent fetch to process in order to constrain memory consumption
+
+## **vivo-1.1.6** released 9/9/2024
+
+- Made DNAResultItem Serializable
