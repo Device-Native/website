@@ -41,4 +41,4 @@ hide:
 
 ## **vivo-1.1.6** released 9/9/2024
 
-- Made DNAResultItem Serializable
+- Made DNAResultItem Parceable
