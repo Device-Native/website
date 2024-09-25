@@ -16,7 +16,7 @@ The DeviceNativeAds SDK is distributed as an AAR file. Follow the instructions b
 
 ### 2.1. Download the AAR File
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.1.0.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.1.0.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.1.2.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-v1.1.2.aar)
 
 ### 2.2 Place the AAR File in your Project
 
@@ -24,7 +24,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-v1.1.0.aar
+project-folder/libs/com.devicenative.dna-v1.1.2.aar
 ```
 
 ### 2.3 Add the AAR Dependency
@@ -33,7 +33,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-v1.1.0.aar')
+    implementation files('libs/com.devicenative.dna-v1.1.2.aar')
 }
 ```
 
@@ -41,16 +41,20 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-v1.1.0.aar'))
+    implementation(files('libs/com.devicenative.dna-v1.1.2.aar'))
 }
 ```
 
-## 3. Register the Data Orchestrator Service
+## 3. Register the Data Orchestrator Service and Config Builder Service
 
-In your AndroidManifest.xml, register the DNADataOrchestrator service:
+In your AndroidManifest.xml, register the DNADataOrchestrator service and the DNAConfigBuilder service. The DNADataOrchestrator is the main service which coordinates data fetching and processing to deliver fresh advertising results. It will run in your application's process and persist. The DNAConfigBuilder is a one-time use service which runs in a separate process to retrieve the user agent for the device. It will run for approximately 1 second at startup, and not again.
 
 ```xml
 <service android:name="com.devicenative.dna.DNADataOrchestrator" />
+<service
+    android:name="com.devicenative.dna.utils.DNAConfigBuilder"
+    android:process=":dna_config_builder"
+    android:exported="false"/>
 ```
 
 ## 4. Add Required Permissions
