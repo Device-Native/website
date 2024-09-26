@@ -42,3 +42,9 @@ hide:
 ## **vivo-1.1.6** released 9/9/2024
 
 - Made DNAResultItem Parceable
+
+## **vivo-1.1.7** released 9/26/2024
+
+- Improved the robustness of inter-process communication for user agent
+- Lower resource consumption when reading user agent
+- Added code to prevent duplicate data orchestrator services from running
