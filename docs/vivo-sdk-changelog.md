@@ -48,3 +48,7 @@ hide:
 - Improved the robustness of inter-process communication for user agent
 - Lower resource consumption when reading user agent
 - Added code to prevent duplicate data orchestrator services from running
+
+## **vivo-1.1.8** released 9/30/2024
+
+- Fixed potential null pointer exception in profile change monitor
