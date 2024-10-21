@@ -59,6 +59,7 @@ hide:
 - SDK now supports work profile management
 - Some performance improvements to ad serving
 
-## [**vivo-1.1.10**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.10.aar) released 10/16/2024
+## [**vivo-1.1.10**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.10.aar) released 10/20/2024
 
 - Fixed a bug where the app name was being used instead of the title
+- Implemented better launching of User Agent collection service to handle background restrictions
