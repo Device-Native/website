@@ -63,3 +63,7 @@ hide:
 
 - Fixed a bug where the app name was being used instead of the title
 - Implemented better launching of User Agent collection service to handle background restrictions
+
+## [**vivo-1.1.11**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.11.aar) released 11/1/2024
+
+- Reduced the time taken to retrieve the Chrome User Agent in the separate process to minimize the chance of collisions.
