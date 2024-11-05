@@ -67,3 +67,8 @@ hide:
 ## [**vivo-1.1.11**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.11.aar) released 11/1/2024
 
 - Reduced the time taken to retrieve the Chrome User Agent in the separate process to minimize the chance of collisions.
+
+## [**vivo-1.1.12**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.12.aar) released 11/5/2024
+
+- Better management of the local GAID
+- Change of direct linking for app install campaigns
