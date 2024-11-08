@@ -72,3 +72,9 @@ hide:
 
 - Better management of the local GAID
 - Change of direct linking for app install campaigns
+
+## [**vivo-1.1.13**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.13.aar) released 11/7/2024
+
+- Fixed an issue where new apps were not being assigned a user profile
+- Improved the latency of link redirects in some cases
+- Added support for intent-based deep linking
