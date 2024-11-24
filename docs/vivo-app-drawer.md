@@ -36,7 +36,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.13.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.13.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.14.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.14.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -47,7 +47,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.1.13.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.1.14.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -59,7 +59,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.1.13.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.1.14.aar')
 }
 ```
 
@@ -69,7 +69,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.1.13.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.1.14.aar'))
 }
 ```
 

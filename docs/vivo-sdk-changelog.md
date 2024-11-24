@@ -78,3 +78,11 @@ hide:
 - Fixed an issue where new apps were not being assigned a user profile
 - Improved the latency of link redirects in some cases
 - Added support for intent-based deep linking
+
+## [**vivo-1.1.14**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.14.aar) released 11/24/2024
+
+- Changed back to market:// URLs for app install campaigns
+- Fixed a bug for routing duplicate clicks
+- Removed logging when debug mode is off
+- Fast open app store when link is cached
+- Query parameters for market URL rewrites
