@@ -86,3 +86,7 @@ hide:
 - Removed logging when debug mode is off
 - Fast open app store when link is cached
 - Query parameters for market URL rewrites
+
+## [**vivo-1.1.15**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.15.aar) released 12/4/2024
+
+- Added support for gzip for reduced bandwidth usage
