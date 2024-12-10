@@ -90,3 +90,7 @@ hide:
 ## [**vivo-1.1.15**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.15.aar) released 12/4/2024
 
 - Added support for gzip for reduced bandwidth usage
+
+## [**vivo-1.1.16**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.16.aar) released 12/10/2024
+
+- Added support for destination URL override

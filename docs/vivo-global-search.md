@@ -66,7 +66,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.15.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.15.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.16.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.16.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -77,7 +77,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.1.15.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.1.16.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -89,7 +89,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.1.15.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.1.16.aar')
 }
 ```
 
@@ -99,7 +99,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.1.15.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.1.16.aar'))
 }
 ```
 
@@ -392,13 +392,15 @@ dna.fireImpressions(scenario3Ads, "gs, scenario 3, slot 5 and 10, CPA");
 ### 7. Send user click to DNA for routing
 7 将用户点击发送给DNA进行路由
 
-After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters.
+After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters. If you want to override the app store URL, you can do so by passing in the overrideAppStoreUrl parameter.
 
-用户点击 DNA 结果后，vivo 将点击发送给 DNA 进行路由。DNA 应该处理点击路由，因为重要的是使用适当的参数将用户深度链接到广告主的应用。
+用户点击 DNA 结果后，vivo 将点击发送给 DNA 进行路由。DNA 应该处理点击路由，因为重要的是使用适当的参数将用户深度链接到广告主的应用。如果您想覆盖应用商店 URL，可以通过传递 overrideAppStoreUrl 参数来实现。
 
 ```java
+String overrideAppStoreUrl = "vivoMarket://mobile/detail?package_name=com.whatsapp&direct_download=false&data_report={"search_type":"7","showpos":"0","scene":"2"}&time=1733831680973&from_info={position=1, scene=2}";
+
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-DeviceNativeAds.getInstance(this).fireClickAndRoute(resultItem,  new DeviceNativeClickHandler() {
+DeviceNativeAds.getInstance(this).fireClickAndRoute(resultItem, overrideAppStoreUrl, new DeviceNativeClickHandler() {
   @Override
   public void onClickServerCompleted() {
     Log.i("GlobalSearchActivity", "Click tracking completed successfully.");
@@ -673,13 +675,16 @@ You can access the ratings, downloads, and reviews of the advertiser's app from 
 ### 9. Send user click to DNA for routing for either scenario
 9 将用户点击发送给DNA进行路由
 
-After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters. (This is the same as the Recommended Apps section in the Global Search app.)
+After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters. (This is the same as the Recommended Apps section in the Global Search app.) If you want to override the app store URL, you can do so by passing in the overrideAppStoreUrl parameter.
 
-用户点击 DNA 结果后，vivo 将点击发送给 DNA 进行路由。DNA 应该处理点击路由，因为重要的是使用适当的参数将用户深度链接到广告主的应用。（这与 Global Search 应用中的推荐应用部分相同。）
+用户点击 DNA 结果后，vivo 将点击发送给 DNA 进行路由。DNA 应该处理点击路由，因为重要的是使用适当的参数将用户深度链接到广告主的应用。（这与 Global Search 应用中的推荐应用部分相同。）如果您想覆盖应用商店 URL，可以通过传递 overrideAppStoreUrl 参数来实现。
+
 
 ```java
+String overrideAppStoreUrl = "vivoMarket://mobile/detail?package_name=com.whatsapp&direct_download=false&data_report={"search_type":"7","showpos":"0","scene":"2"}&time=1733831680973&from_info={position=1, scene=2}"; 
+
 DeviceNativeAds dna = DeviceNativeAds.getInstance(getApplicationContext());
-DeviceNativeAds.getInstance(this).fireClickAndRoute(resultItem,  new DeviceNativeClickHandler() {
+DeviceNativeAds.getInstance(this).fireClickAndRoute(resultItem, overrideAppStoreUrl, new DeviceNativeClickHandler() {
   @Override
   public void onClickServerCompleted() {
     Log.i("GlobalSearchActivity", "Click tracking completed successfully.");
