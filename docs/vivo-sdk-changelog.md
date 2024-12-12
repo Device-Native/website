@@ -94,3 +94,7 @@ hide:
 ## [**vivo-1.1.16**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.16.aar) released 12/10/2024
 
 - Added support for destination URL override
+
+## [**vivo-1.1.17**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.17.aar) released 12/12/2024
+
+- More robust coverage of initialization to handle unpredicatible calls to destroy()
