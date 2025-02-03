@@ -36,7 +36,7 @@ DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行�
 #### 1.1. Download the AAR File
 1.1. 下载 AAR 文件
 
-You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.17.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.1.17.aar)
+You can find the latest AAR hosted here: [https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.0.aar](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.0.aar)
 
 #### 1.2 Place the AAR File in your Project
 1.2 将 AAR 文件放置在您的项目中
@@ -47,7 +47,7 @@ Place the DeviceNativeAds SDK in the `libs` folder of your Android project. If y
 
 ```
 project-folder/src/main/java/com/example/project/MainActivity.java
-project-folder/libs/com.devicenative.dna-vivo-v1.1.17.aar
+project-folder/libs/com.devicenative.dna-vivo-v1.2.0.aar
 ```
 
 #### 1.3 Add the AAR Dependency
@@ -59,7 +59,7 @@ Add the following dependency to your app's `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation files('libs/com.devicenative.dna-vivo-v1.1.17.aar')
+    implementation files('libs/com.devicenative.dna-vivo-v1.2.0.aar')
 }
 ```
 
@@ -69,7 +69,7 @@ or some Gradle versions:
 
 ```gradle
 dependencies {
-    implementation(files('libs/com.devicenative.dna-vivo-v1.1.17.aar'))
+    implementation(files('libs/com.devicenative.dna-vivo-v1.2.0.aar'))
 }
 ```
 
@@ -190,6 +190,7 @@ DNAResultItem 类的关键字段
 | `isInstalled` | A convenient boolean indicating whether the advertiser's app is installed, derived from package manager | 一个方便的布尔值,表示广告主的应用是否已安装,从包管理器派生 |
 | `appName` | The name of the advertiser's app | 广告主应用的名称 |
 | `className` | The class name of the activity to be shown to the user. Can be null! | 要向用户显示的活动类名。可以为空！ |
+| `userHandle` | The user handle of the app. Can be null! | 广告主应用的用户句柄。可以为空！ |
 | `title` | The ad creative title to be shown to the user | 要向用户显示的广告创意标题 |
 | `description` | The ad creative description to be shown to the user. Can be null! | 要向用户显示的广告创意描述。可以为空！ |
 | `iconUrl` | The ad creative icon URL to be shown to the user. Can be null! | 要向用户显示的广告创意图标URL。可以为空！ |
