@@ -1,0 +1,783 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The integration guide for Device Native's SDK">
+      
+      
+        <meta name="author" content="Device Native, Inc">
+      
+      
+        <link rel="canonical" href="https://device-native.github.io/vivo-app-drawer/">
+      
+      
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.5">
+    
+    
+      
+        <title>DNA - vivo Integration Proposals - Device Native Integration Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dna-vivo-integration-proposals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Device Native Integration Documentation" class="md-header__button md-logo" aria-label="Device Native Integration Documentation" data-md-component="logo">
+      
+  <img src="../images/logo-light.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Device Native Integration Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DNA - vivo Integration Proposals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Device Native Integration Documentation" class="md-nav__button md-logo" aria-label="Device Native Integration Documentation" data-md-component="logo">
+      
+  <img src="../images/logo-light.png" alt="logo">
+
+    </a>
+    Device Native Integration Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrate-sdk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integrate Android SDK
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rec-organic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Organic/Ads - Recommendations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-organic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Organic/Ads - Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rec-ads/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ads Only - Recommendations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hot-app-suggestions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ads Only - Hot Apps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-ads/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ads Only - Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+
+<h1 id="dna-vivo-integration-proposals">DNA - vivo Integration Proposals</h1>
+<p><strong>Date:</strong> 2024-10-24</p>
+<p>Below are the proposed integration steps to accommodate vivo's App Drawer integration product spec.</p>
+<ol>
+<li><a href="#dna-sdk-integration">DNA SDK Integration</a></li>
+<li><a href="#app-drawer-recommended-apps-integration">App Drawer Recommended Apps Integration</a><ol>
+<li><a href="#1-user-opens-app-drawer-app">User opens App Drawer app</a></li>
+<li><a href="#2-call-the-dna-sdk-to-get-ads-for-slot-4-and-slot-8">Call the DNA SDK to get ads for Slot 4 and Slot 8</a></li>
+<li><a href="#3-vivo-retrieves-its-own-recommended-apps-list">vivo retrieves its own Recommended Apps list</a></li>
+<li><a href="#4-deduplicate-dna-results-from-vivos-organic-results">Deduplicate DNA results from vivo's organic results</a></li>
+<li><a href="#5-load-ad-creative-in-the-ui">Load ad creative in the UI</a></li>
+<li><a href="#6-fire-impressions-for-the-ads">Fire impressions for the ads</a></li>
+<li><a href="#7-send-user-click-to-dna-for-routing">Send user click to DNA for routing</a></li>
+<li><a href="#8-do-not-cache-the-results">Do not cache the results</a></li>
+</ol>
+</li>
+</ol>
+<h1 id="dna-sdk-integration">DNA SDK Integration</h1>
+<p>DNA SDK 集成</p>
+<p>See <a href="../vivo-sdk-changelog/">vivo-sdk-changelog</a> for release details.</p>
+<h3 id="1-add-aar-dependency">1. Add AAR Dependency</h3>
+<p>1 添加 AAR 依赖</p>
+<p>The DeviceNativeAds SDK is distributed as an AAR file. Follow the instructions below to install it.
+DeviceNativeAds SDK 以 AAR 文件的形式分发。请按照以下说明进行安装。</p>
+<h4 id="11-download-the-aar-file">1.1. Download the AAR File</h4>
+<p>1.1. 下载 AAR 文件</p>
+<p>You can find the latest AAR hosted here: <a href="https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.1.aar">https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.1.aar</a></p>
+<h4 id="12-place-the-aar-file-in-your-project">1.2 Place the AAR File in your Project</h4>
+<p>1.2 将 AAR 文件放置在您的项目中</p>
+<p>Place the DeviceNativeAds SDK in the <code>libs</code> folder of your Android project. If you don't have a <code>libs</code> folder, create one. It should be placed in the same folder as your <code>src</code> folder like so:</p>
+<p>将 DeviceNativeAds SDK 放在 Android 项目的 <code>libs</code> 文件夹中。如果您没有 <code>libs</code> 文件夹，请创建一个。它应该与您的 <code>src</code> 文件夹放在同一目录下，如下所示：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>project-folder/src/main/java/com/example/project/MainActivity.java
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>project-folder/libs/com.devicenative.dna-vivo-v1.2.1.aar
+</span></code></pre></div>
+<h4 id="13-add-the-aar-dependency">1.3 Add the AAR Dependency</h4>
+<p>1.3 添加 AAR 依赖</p>
+<p>Add the following dependency to your app's <code>build.gradle</code> file:</p>
+<p>将以下依赖项添加到您应用的 <code>build.gradle</code> 文件中：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>dependencies {
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    implementation files(&#39;libs/com.devicenative.dna-vivo-v1.2.1.aar&#39;)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>}
+</span></code></pre></div>
+<p>or some Gradle versions:</p>
+<p>或者对于某些 Gradle 版本：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>dependencies {
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    implementation(files(&#39;libs/com.devicenative.dna-vivo-v1.2.1.aar&#39;))
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>}
+</span></code></pre></div>
+<h3 id="2-register-the-data-orchestrator-service">2. Register the Data Orchestrator Service</h3>
+<p>2 注册数据编排服务</p>
+<p>In your AndroidManifest.xml, register the DNADataOrchestrator service and the DNAConfigBuilder service. The DNADataOrchestrator is the main service which coordinates data fetching and processing to deliver fresh advertising results. It will run in your application's process and persist. The DNAConfigBuilder is a one-time use service which runs in a separate process to retrieve the user agent for the device. It will run for approximately 1 second at startup, and not again.</p>
+<p>在您的 AndroidManifest.xml 中，注册 DNADataOrchestrator 服务和 DNAConfigBuilder 服务。DNADataOrchestrator 是主要服务，协调数据获取和处理以交付新鲜广告结果。它将在您的应用程序进程中运行并持续存在。DNAConfigBuilder 是一次性服务，在单独的进程中运行以检索设备的 user agent。它将在启动时运行约 1 秒钟，不再运行。</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&lt;service</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;com.devicenative.dna.DNADataOrchestrator&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">&lt;service</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="na">android:name=</span><span class="s">&quot;com.devicenative.dna.utils.DNAConfigBuilder&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="na">android:process=</span><span class="s">&quot;:dna_config_builder&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="na">android:exported=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></div>
+<h3 id="3-verify-required-permissions">3. Verify Required Permissions</h3>
+<p>3 验证所需权限</p>
+<p>Make sure to include the following permissions in your AndroidManifest.xml:</p>
+<p>请确保在您的 AndroidManifest.xml 中包含以下权限：</p>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.INTERNET&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.QUERY_ALL_PACKAGES&quot;</span><span class="nt">/&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.PACKAGE_USAGE_STATS&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></div>
+<h3 id="4-initialize-dna-sdk">4. Initialize DNA SDK</h3>
+<p>4 初始化 DNA SDK</p>
+<p>Initialize the SDK in your Application class's <code>onCreate</code> method:</p>
+<p>在您的 Application 类的 <code>onCreate</code> 方法中初始化 SDK：</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nd">@Override</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="kd">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">();</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">dna</span><span class="p">.</span><span class="na">init</span><span class="p">(</span><span class="s">&quot;4d37ce02-c110-4b06-ad97-9241e4163dd5&quot;</span><span class="p">);</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="c1">// any other code you have</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="7-clean-up-dna-resources">7. Clean Up DNA Resources</h3>
+<ol>
+<li>清理 DNA 资源</li>
+</ol>
+<p>In the Application class's <code>onTerminate</code> method, clean up SDK resources:</p>
+<p>在 Application 类的 <code>onTerminate</code> 方法中，清理 SDK 资源：</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nd">@Override</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onTerminate</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kd">super</span><span class="p">.</span><span class="na">onTerminate</span><span class="p">();</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="n">dna</span><span class="p">.</span><span class="na">destroy</span><span class="p">();</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="c1">// any other code you have</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h1 id="app-drawer-recommended-apps-integration">App Drawer Recommended Apps Integration</h1>
+<p>App Drawer 推荐应用集成</p>
+<h3 id="introduction">Introduction</h3>
+<p>介绍</p>
+<p>This section of the documentation will describe the technical integration to integrate re-engagement ads into Slot 4 and Slot 8 of the App Drawer Recommended Apps section.</p>
+<p>本文档部分将描述将重新参与广告集成到 App Drawer 推荐应用部分的 Slot 4 和 Slot 8 的技术集成。</p>
+<h3 id="1-user-opens-app-drawer-app">1: User opens App Drawer app</h3>
+<ol>
+<li>用户打开 App Drawer 应用</li>
+</ol>
+<p>Adding this step to indicate that the user has opened the App Drawer app, which is the trigger for the following logic.</p>
+<p>添加此步骤以表明用户已打开 App Drawer 应用，这是以下逻辑的触发器。</p>
+<h3 id="2-call-the-dna-sdk-to-get-ads-for-slot-4-and-slot-8">2. Call the DNA SDK to get ads for Slot 4 and Slot 8</h3>
+<p>2 调用DNA SDK获取Slot 4和Slot 8的广告</p>
+<p>This method call will return a list of DNAResultItem objects which will be used for Slot 4 and Slot 8. It will return 2 total results which can be used for the 2 available slots.</p>
+<p>此方法调用将返回一组 DNAResultItem 对象，用于 Slot 4 和 Slot 8。它将返回可用于 2 个可用槽位的 2 个总结果。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">());</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">DNAResultItem</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adUnits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dna</span><span class="p">.</span><span class="na">getAdsForCache</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;app drawer, slot 4 and 8&quot;</span><span class="p">);</span>
+</span></code></pre></div>
+<h4 id="note">Note</h4>
+<p>注意</p>
+<ol>
+<li>These are ordered by relevance and monetization potential, so the first ad will be the most relevant.<ul>
+<li>这些是根据相关性和货币化潜力排序的，所以第一个广告是最相关的。</li>
+</ul>
+</li>
+<li>This method return an ad in milliseconds, so it's safe to run on the main thread. <ul>
+<li>此方法在毫秒内返回广告，因此可以在主线程上运行。</li>
+</ul>
+</li>
+<li>This method does NOT assume that you will show the ads, and therefore will not fire impressions. You must fire impressions yourself with a separate call.<ul>
+<li>此方法不假设您会显示广告，因此不会触发展示。您必须使用单独的调用触发展示。</li>
+</ul>
+</li>
+</ol>
+<h4 id="key-fields-of-dnaresultitem-class">Key Fields of DNAResultItem Class</h4>
+<p>DNAResultItem 类的关键字段</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Translation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Unique identifier for the ad. Just a UUID for reference if you need</td>
+<td>广告的唯一标识符。如果需要,只是一个用于参考的UUID</td>
+</tr>
+<tr>
+<td><code>packageName</code></td>
+<td>The package name of the advertiser's app</td>
+<td>广告主应用的包名</td>
+</tr>
+<tr>
+<td><code>isInstalled</code></td>
+<td>A convenient boolean indicating whether the advertiser's app is installed, derived from package manager</td>
+<td>一个方便的布尔值,表示广告主的应用是否已安装,从包管理器派生</td>
+</tr>
+<tr>
+<td><code>appName</code></td>
+<td>The name of the advertiser's app</td>
+<td>广告主应用的名称</td>
+</tr>
+<tr>
+<td><code>className</code></td>
+<td>The class name of the activity to be shown to the user. Can be null!</td>
+<td>要向用户显示的活动类名。可以为空！</td>
+</tr>
+<tr>
+<td><code>userHandle</code></td>
+<td>The user handle of the app. Can be null!</td>
+<td>广告主应用的用户句柄。可以为空！</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>The ad creative title to be shown to the user</td>
+<td>要向用户显示的广告创意标题</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>The ad creative description to be shown to the user. Can be null!</td>
+<td>要向用户显示的广告创意描述。可以为空！</td>
+</tr>
+<tr>
+<td><code>iconUrl</code></td>
+<td>The ad creative icon URL to be shown to the user. Can be null!</td>
+<td>要向用户显示的广告创意图标URL。可以为空！</td>
+</tr>
+<tr>
+<td><code>ratings</code></td>
+<td>The number of ratings of the advertiser's app from Google Play</td>
+<td>广告主应用从Google Play的评分次数</td>
+</tr>
+<tr>
+<td><code>downloads</code></td>
+<td>The number of downloads of the advertiser's app from Google Play</td>
+<td>广告主应用从Google Play的下载次数</td>
+</tr>
+<tr>
+<td><code>rating</code></td>
+<td>The average rating of the advertiser's app from Google Play</td>
+<td>广告主应用从Google Play的平均评分</td>
+</tr>
+<tr>
+<td><code>eCPM</code></td>
+<td>The expected revenue per thousand impressions for the ad unit. Note that this is not real when the <code>learningMode</code> is true</td>
+<td>广告单元的预期每千次展示收入。注意，当 <code>learningMode</code> 为 true 时，这不是真实的</td>
+</tr>
+<tr>
+<td><code>learningMode</code></td>
+<td>A boolean indicating whether the ad unit is in eCPM learning mode, and whether the eCPM number can be used.</td>
+<td>一个布尔值，表示广告单元是否处于 eCPM 学习模式，以及是否可以使用 eCPM 数字。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-vivo-retrieves-its-own-recommended-apps-list">3. vivo retrieves its own Recommended Apps list</h3>
+<p>3 vivo检索自己的推荐应用列表</p>
+<p>In this step, vivo will retrieve its own list of recommended apps. This is the code that currently powers the "Recommended Apps" section of the App Drawer app.</p>
+<p>在此步骤中，vivo将检索其自己的推荐应用列表。这是当前为 App Drawer 应用的“推荐应用”部分提供动力的代码。</p>
+<h3 id="4-deduplicate-dna-results-from-vivos-organic-results">4. Deduplicate DNA results from vivo's organic results</h3>
+<p>4 为3种场景拆分DNA结果</p>
+<p>vivo should prioritize the DNA results over its own organic results, and should therefore should find and remove all of the duplicate package names from their own results.</p>
+<p>vivo 应该优先考虑 DNA 结果而不是其自己的有机结果，因此应该找到并删除其结果中的所有重复包名。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>function removeDuplicateResults(vivoResults, dnaResults):
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    # Create a set to store package names from DNA results for quick lookup
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    dnaPackageNames = set()
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    # Populate the set with package names from DNA results
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    for dnaResult in dnaResults:
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        dnaPackageNames.add(dnaResult.packageName)
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    # Create a new list to store non-duplicate vivo results
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    filteredVivoResults = []
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    # Iterate over vivo&#39;s results
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    for vivoResult in vivoResults:
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        # Check if the package name is not in the DNA package names set
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        if vivoResult.packageName not in dnaPackageNames:
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>            # If not a duplicate, add to the filtered list
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>            filteredVivoResults.append(vivoResult)
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    # Return the filtered list of vivo results
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>    return filteredVivoResults 
+</span></code></pre></div>
+<p>If there are fewer than 2 duplicates, then vivo should remove the lowest relevant results to make room for the 2 DNA results.</p>
+<p>如果少于 2 个重复项，则 vivo 应该删除最低相关的结果以腾出空间给 2 个 DNA 结果。</p>
+<h3 id="5-load-ad-creative-in-the-ui">5. Load ad creative in the UI</h3>
+<p>5 在UI中加载广告创意</p>
+<p>Below shows an example implementation of loading the ad creative in the UI, with DNA method calls.</p>
+<p>以下显示了在 UI 中加载广告创意的示例实现，使用 DNA 方法调用。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">ImageView</span><span class="w"> </span><span class="n">itemIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">item_icon</span><span class="p">);</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">TextView</span><span class="w"> </span><span class="n">itemTitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">item_title</span><span class="p">);</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">TextView</span><span class="w"> </span><span class="n">itemDescription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemView</span><span class="p">.</span><span class="na">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">item_description</span><span class="p">);</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1">// handle loading app icon async if app uninstalled</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1">// 如果应用未安装，异步加载应用图标</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">resultItem</span><span class="p">.</span><span class="na">isInstalled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="n">resultItem</span><span class="p">.</span><span class="na">loadCreativeDrawableAsync</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DNAResultItem</span><span class="p">.</span><span class="na">ImageCallback</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nd">@Override</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onImageLoaded</span><span class="p">(</span><span class="n">Drawable</span><span class="w"> </span><span class="n">icon</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">      </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">        </span><span class="n">runOnUiThread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">icon</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">              </span><span class="n">Drawable</span><span class="w"> </span><span class="n">backupIcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPackageManager</span><span class="p">().</span><span class="na">getApplicationIcon</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">packageName</span><span class="p">);</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">              </span><span class="n">itemIcon</span><span class="p">.</span><span class="na">setImageDrawable</span><span class="p">(</span><span class="n">backupIcon</span><span class="p">);</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">              </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;SearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error loading app icon: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">          </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">            </span><span class="n">itemIcon</span><span class="p">.</span><span class="na">setImageDrawable</span><span class="p">(</span><span class="n">icon</span><span class="p">);</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">      </span><span class="p">}).</span><span class="na">start</span><span class="p">();</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="nd">@Override</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onError</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">      </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">        </span><span class="n">Drawable</span><span class="w"> </span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPackageManager</span><span class="p">().</span><span class="na">getApplicationIcon</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">packageName</span><span class="p">);</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">        </span><span class="n">itemIcon</span><span class="p">.</span><span class="na">setImageDrawable</span><span class="p">(</span><span class="n">icon</span><span class="p">);</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;SearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error loading app icon: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">  </span><span class="p">});</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">  </span><span class="c1">// Note, if convenient, there is a sync method to get the icon but not recommended for UI thread</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">  </span><span class="c1">// Drawable icon = resultItem.loadCreativeDrawable();</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="w">  </span><span class="c1">// 注意，如果方便的话，有一个同步方法可以获取图标，但不建议在UI线程中使用</span>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">  </span><span class="c1">// Drawable icon = resultItem.loadCreativeDrawable();</span>
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="w">  </span><span class="c1">// if app is installed, show the app icon</span>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">  </span><span class="c1">// 如果应用已安装，显示应用图标</span>
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="w">  </span><span class="n">Drawable</span><span class="w"> </span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getPackageManager</span><span class="p">().</span><span class="na">getApplicationIcon</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">packageName</span><span class="p">);</span>
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="w">  </span><span class="n">itemIcon</span><span class="p">.</span><span class="na">setImageDrawable</span><span class="p">(</span><span class="n">icon</span><span class="p">);</span>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="p">}</span>
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a>
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="n">itemTitle</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">resultItem</span><span class="p">.</span><span class="na">title</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="6-fire-impressions-for-the-ads">6. Fire impressions for the ads</h3>
+<p>6 使用新的位置标签为广告触发展示</p>
+<p>It is important that you fire impressions for the ads when they are shown to the user. This is how DNA tracks the performance of the ads, but also manages frequency caps, targeting and many other functions.</p>
+<p>当向用户显示广告时，重要的是触发展示。这是 DNA 跟踪广告性能的方式，但也管理频率上限、定位和许多其他功能。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">());</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">dna</span><span class="p">.</span><span class="na">fireImpressions</span><span class="p">(</span><span class="n">dnaResultsShown</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="7-send-user-click-to-dna-for-routing">7. Send user click to DNA for routing</h3>
+<p>7 将用户点击发送给DNA进行路由</p>
+<p>After the user clicks on a DNA result, vivo will send the click to DNA for routing. DNA should handle the click routing because it is important to deep link the user to the advertiser's app with the appropriate parameters.</p>
+<p>用户点击 DNA 结果后，vivo 将点击发送给 DNA 进行路由。DNA 应该处理点击路由，因为重要的是使用适当的参数将用户深度链接到广告主的应用。</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">DeviceNativeAds</span><span class="w"> </span><span class="n">dna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">getApplicationContext</span><span class="p">());</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">DeviceNativeAds</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="na">fireClickAndRoute</span><span class="p">(</span><span class="n">resultItem</span><span class="p">,</span><span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="n">DeviceNativeClickHandler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="nd">@Override</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickServerCompleted</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Click tracking completed successfully.&quot;</span><span class="p">);</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="nd">@Override</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onClickRouterCompleted</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">didRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">didRoute</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">      </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error routing click: No activity found to handle the click.&quot;</span><span class="p">);</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">      </span><span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Click routed successfully.&quot;</span><span class="p">);</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">  </span><span class="nd">@Override</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">errorCode</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">    </span><span class="n">Log</span><span class="p">.</span><span class="na">e</span><span class="p">(</span><span class="s">&quot;GlobalSearchActivity&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error clicking ad: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">);</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="p">});</span>
+</span></code></pre></div>
+<h4 id="important-click-handling-notes">Important click handling notes</h4>
+<p>重要的点击处理注意事项</p>
+<ol>
+<li>Make sure to handle the failure cases, such as no activity found to handle the click, and errors in the click tracking and routing. This should be very rare, but it's important to handle it gracefully.<ul>
+<li>确保处理故障情况，例如没有活动可以处理点击，以及点击跟踪和路由中的错误。这种情况应该很少见，但重要的是要优雅地处理它。</li>
+</ul>
+</li>
+</ol>
+<h3 id="8-do-not-cache-the-results">8. Do not cache the results</h3>
+<p>8 不要缓存结果</p>
+<p>Fresh ad retrieval is very low latency and not resource intensive, so there is no need to cache the results. Results can be become stale very quickly, and it's important that the user sees the most relevant results for optimum CPM.</p>
+<p>新鲜的广告检索延迟非常低，不占用资源，因此无需缓存结果。结果可能会很快变得过时，用户看到最相关的结果对于最佳 CPM 至关重要。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight", "navigation.footer"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
