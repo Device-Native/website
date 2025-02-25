@@ -103,3 +103,7 @@ hide:
 
 - Added cloned and multi-user app support
 - Restructured network sync to improve performance and reduce data transfer
+
+## [**vivo-1.2.1**](https://dna-hosting.s3.amazonaws.com/public/com.devicenative.dna-vivo-v1.2.1.aar) released 2/20/2025
+
+- Implemented native fallback support for search and suggestions
